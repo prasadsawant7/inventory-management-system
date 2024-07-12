@@ -1,0 +1,12 @@
+{
+  "editor.wordWrap": "on",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "typescript.suggest.paths": true,
+  "files.autoSave": "onWindowChange",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}
