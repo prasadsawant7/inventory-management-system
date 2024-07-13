@@ -1,12 +1,15 @@
 {
-  "name": "be10x-assignment",
-  "version": "0.1.0",
+  "name": "inventory-management-system",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:unit": "",
+    "test:integration": "",
+    "test:e2e": "",
     "prepare": "husky || true"
   },
   "lint-staged": {
@@ -14,17 +17,28 @@
     "*.{ts,tsx}": "eslint"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.4.1",
+    "@neondatabase/serverless": "^0.9.4",
+    "@radix-ui/react-slot": "^1.1.0",
     "@t3-oss/env-nextjs": "^0.10.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.32.0",
     "jiti": "^1.21.6",
+    "lucide-react": "^0.408.0",
     "next": "14.2.5",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "drizzle-kit": "^0.23.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "^9.1.0",

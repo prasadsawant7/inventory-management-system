@@ -3,11 +3,13 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.string().url(),
-    OPEN_AI_API_KEY: z.string().min(1),
+    NEON_DATABASE_URL_UNPOOLED: z.string().url(),
+    NEON_DATABASE_URL: z.string().url(),
+    NODE_ENV: z.enum(["development", "production", "test"]),
   },
   runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
-    OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
+    NEON_DATABASE_URL_UNPOOLED: process.env.NEON_DATABASE_URL_UNPOOLED,
+    NEON_DATABASE_URL: process.env.NEON_DATABASE_URL,
+    NODE_ENV: process.env.NODE_ENV,
   },
 });

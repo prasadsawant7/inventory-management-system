@@ -1,0 +1,11 @@
+import { defineConfig } from "drizzle-kit";
+import { env } from "@/env/server";
+
+export default defineConfig({
+  schema: "./db/schema.ts",
+  out: "./drizzle",
+  dialect: "postgresql",
+  dbCredentials: {
+    url: env.NEON_DATABASE_URL,
+  },
+});
