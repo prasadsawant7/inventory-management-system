@@ -3,6 +3,8 @@ name: Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  NEON_DATABASE_URL_UNPOOLED: ${{ secrets.NEON_PROD_DATABASE_URL_UNPOOLED }}
+  NEON_DATABASE_URL: ${{ secrets.NEON_PROD_DATABASE_URL }}
 
 on:
   push:
