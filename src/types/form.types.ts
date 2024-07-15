@@ -1,9 +1,9 @@
-import { loginFormSchema, registerFormSchema } from "@/lib/schema";
+import { SignUpSchema, LoginSchema } from "@/lib/schema";
 import { z } from "zod";
 
-export type RegisterFormType = z.infer<typeof registerFormSchema>;
+export type SignUpFormType = z.infer<typeof SignUpSchema>;
 
-export type LoginFormType = z.infer<typeof loginFormSchema>;
+export type LoginFormType = z.infer<typeof LoginSchema>;
 
 export enum UserType {
   CUSTOMER = "customer",
