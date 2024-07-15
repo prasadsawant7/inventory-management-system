@@ -62,6 +62,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backgroundImage: {
+        auth: "url('/assets/img/auth_bg.webp')",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
