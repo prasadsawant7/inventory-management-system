@@ -1,7 +1,13 @@
+import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/auth";
 import SignUpForm from "@/components/forms/signup-form";
 
-const SignUpPage = () => {
-  return <SignUpForm />;
-};
+export default async function SignUpPage() {
+  const { user } = await validateRequest();
 
-export default SignUpPage;
+  if (user) {
+    return redirect("/");
+  }
+
+  return <SignUpForm />;
+}

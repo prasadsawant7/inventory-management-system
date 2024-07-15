@@ -1,7 +1,13 @@
+import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/auth";
 import LoginForm from "@/components/forms/login-form";
 
-const LoginPage = () => {
-  return <LoginForm />;
-};
+export default async function LoginPage() {
+  const { user } = await validateRequest();
 
-export default LoginPage;
+  if (user) {
+    return redirect("/");
+  }
+
+  return <LoginForm />;
+}

@@ -1,2 +1,5 @@
 build
 coverage
+drizzle
+pnpm-lock.yaml
+README.md

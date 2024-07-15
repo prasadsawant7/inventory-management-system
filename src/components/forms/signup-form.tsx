@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { RegisterFormType, UserType } from "@/types/form.types";
-import { registerFormSchema } from "@/lib/schema";
+import { SignUpSchema } from "@/lib/schema";
+
 import CustomFormField, {
   FormFieldType,
 } from "@/components/forms/form-custom-fields";
-
 import {
   Card,
   CardContent,
@@ -28,12 +28,13 @@ import { FormSuccess } from "@/components/forms/form-success";
 
 import { UserTypes } from "@/constants";
 import { capitalize } from "@/utils";
-import { signUp } from "@/actions/auth.action";
+import { signUp } from "@/actions/auth.actions";
 
 export default function SignUpForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const defaultValues: RegisterFormType = {
     firstName: "",
@@ -43,22 +44,26 @@ export default function SignUpForm() {
     role: UserType.CUSTOMER,
   };
 
-  const form = useForm<z.infer<typeof registerFormSchema>>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<z.infer<typeof SignUpSchema>>({
+    resolver: zodResolver(SignUpSchema),
     defaultValues,
   });
 
-  const onSubmit = async (values: z.infer<typeof registerFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof SignUpSchema>) => {
     setError("");
     setSuccess("");
 
     startTransition(() => {
       signUp(values).then((data) => {
-        if (data.error) {
-          setError(data.error);
-        } else {
+        if (data.success) {
           setSuccess(data.success);
+
+          setTimeout(() => {
+            router.push("/");
+          }, 1000);
         }
+
+        setError(data.error);
       });
     });
   };
@@ -166,7 +171,7 @@ export default function SignUpForm() {
             asChild
           >
             <Link
-              href="/auth/login"
+              href="/login"
               className="text-yellow-400"
             >
               Login

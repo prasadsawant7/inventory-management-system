@@ -66,11 +66,6 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           </Select>
         </FormControl>
       );
-    case FormFieldType.TEXTAREA:
-    case FormFieldType.CHECKBOX:
-    case FormFieldType.DATE_PICKER:
-    case FormFieldType.SKELETON:
-      return props.renderSkeleton ? props.renderSkeleton(field) : null;
     default:
       return null;
   }

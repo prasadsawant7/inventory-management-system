@@ -1,18 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { loginFormSchema } from "@/lib/schema";
+import { LoginSchema } from "@/lib/schema";
 import { LoginFormType, UserType } from "@/types/form.types";
+
 import CustomFormField, {
   FormFieldType,
 } from "@/components/forms/form-custom-fields";
-
 import {
   Card,
   CardContent,
@@ -28,12 +28,13 @@ import { FormSuccess } from "@/components/forms/form-success";
 
 import { UserTypes } from "@/constants";
 import { capitalize } from "@/utils";
-import { login } from "@/actions/auth.action";
+import { login } from "@/actions/auth.actions";
 
 export default function LoginForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
   const defaultValues: LoginFormType = {
     email: "",
@@ -41,19 +42,26 @@ export default function LoginForm() {
     role: UserType.CUSTOMER,
   };
 
-  const form = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues,
   });
 
-  const onSubmit = async (values: z.infer<typeof loginFormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     setError("");
     setSuccess("");
 
     startTransition(() => {
       login(values).then((data) => {
+        if (data.success) {
+          setSuccess(data.success);
+
+          setTimeout(() => {
+            router.push("/");
+          }, 1000);
+        }
+
         setError(data.error);
-        setSuccess(data.success);
       });
     });
   };
@@ -131,11 +139,12 @@ export default function LoginForm() {
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <Button
+            variant="link"
             className="p-0"
             asChild
           >
             <Link
-              href="/auth/register"
+              href="/sign-up"
               className="text-yellow-400"
             >
               Sign up
