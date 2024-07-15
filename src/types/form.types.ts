@@ -1,4 +1,4 @@
-import { loginFormSchema, registerFormSchema } from "@/schema";
+import { loginFormSchema, registerFormSchema } from "@/lib/schema";
 import { z } from "zod";
 
 export type RegisterFormType = z.infer<typeof registerFormSchema>;

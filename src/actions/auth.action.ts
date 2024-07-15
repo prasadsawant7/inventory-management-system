@@ -1,11 +1,11 @@
 "use server";
 
 import { z } from "zod";
-import { SignUpSchema, LoginSchema } from "@/schema";
-import { getUserByEmail } from "@/lib/user";
+import { SignUpSchema, LoginSchema } from "@/lib/schema";
+import { getUserByEmail } from "@/actions/user.action";
 import { saltAndHashPassword } from "@/utils";
-import { users } from "@/db/schema";
-import db from "@/db/drizzle";
+import { users } from "@/lib/db/schema";
+import db from "@/lib/db";
 
 export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   const validatedFields = SignUpSchema.safeParse(values);
@@ -28,7 +28,7 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
     firstName,
     lastName,
     email,
-    password: hashedPassword,
+    hashedPassword,
     role,
   });
 

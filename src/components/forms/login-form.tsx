@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { loginFormSchema } from "@/schema";
+import { loginFormSchema } from "@/lib/schema";
 import { LoginFormType, UserType } from "@/types/form.types";
 import CustomFormField, {
   FormFieldType,

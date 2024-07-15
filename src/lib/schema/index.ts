@@ -24,7 +24,6 @@ export const UserSchema = z.object({
   }),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
-  isDeleted: z.boolean().default(false),
 });
 
 export const SignUpSchema = z.object({

@@ -8,7 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { RegisterFormType, UserType } from "@/types/form.types";
-import { registerFormSchema } from "@/schema";
+import { registerFormSchema } from "@/lib/schema";
 import CustomFormField, {
   FormFieldType,
 } from "@/components/forms/form-custom-fields";
