@@ -2,6 +2,7 @@ import { Poppins as FontSans } from "next/font/google";
 import "@/styles/globals.css";
 
 import { cn } from "@/utils";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -22,7 +23,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontSans.variable,
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
