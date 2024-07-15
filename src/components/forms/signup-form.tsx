@@ -7,7 +7,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterFormType, UserType } from "@/types/form.types";
+import { SignUpFormType, UserType } from "@/types/form.types";
 import { SignUpSchema } from "@/lib/schema";
 
 import CustomFormField, {
@@ -36,7 +36,7 @@ export default function SignUpForm() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const defaultValues: RegisterFormType = {
+  const defaultValues: SignUpFormType = {
     firstName: "",
     lastName: "",
     email: "",
