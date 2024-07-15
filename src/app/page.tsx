@@ -1,6 +1,6 @@
 import { logout } from "@/actions/auth.actions";
 import { Button } from "@/components/ui/button";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
 
 export default async function Home() {

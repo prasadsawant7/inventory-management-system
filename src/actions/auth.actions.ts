@@ -5,7 +5,7 @@ import { SignUpSchema, LoginSchema } from "@/lib/schema";
 import { getUserByEmail } from "@/actions/user.actions";
 import { saltAndHashPassword } from "@/utils";
 import { users } from "@/lib/db/schema";
-import { lucia, validateRequest } from "@/lib/auth";
+import { lucia, validateRequest } from "@/lib/lucia";
 import { cookies } from "next/headers";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";

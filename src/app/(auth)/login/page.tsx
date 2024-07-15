@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/lib/lucia";
 import LoginForm from "@/components/forms/login-form";
 
 export default async function LoginPage() {
