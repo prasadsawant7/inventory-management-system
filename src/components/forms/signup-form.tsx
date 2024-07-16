@@ -101,7 +101,7 @@ export default function SignUpForm() {
                   id="last-name"
                   name="lastName"
                   label="Last Name"
-                  placeholder="Last Name"
+                  placeholder="Doe"
                   disabled={isPending}
                 />
               </div>

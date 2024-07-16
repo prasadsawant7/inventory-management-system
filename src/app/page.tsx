@@ -1,22 +1,17 @@
-import { logout } from "@/actions/auth.actions";
-import { Button } from "@/components/ui/button";
-import { validateRequest } from "@/lib/lucia";
 import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/lucia";
+import { UserType } from "@/types/form.types";
 
-export default async function Home() {
+export default async function RedirectPage() {
   const { user } = await validateRequest();
 
-  if (!user) {
-    return redirect("/login");
+  if (user && user.role === UserType.ADMIN) {
+    return redirect("/admin");
   }
 
-  return (
-    <main className="flex h-full flex-col items-center justify-center">
-      <h1 className="text-3xl">Protected Route</h1>
-      <h1 className="text-2xl">Home</h1>
-      <form action={logout}>
-        <Button type="submit">Logout</Button>
-      </form>
-    </main>
-  );
+  if (user && user.role === UserType.CUSTOMER) {
+    return redirect("/customer");
+  }
+
+  return null;
 }
