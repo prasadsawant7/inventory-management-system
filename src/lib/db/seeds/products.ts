@@ -1,6 +1,6 @@
-import { Product } from "@/types/product.types";
+import { AddProductFormType } from "@/types/form.types";
 
-export const seedProducts: Product[] = [
+export const seedProducts: AddProductFormType[] = [
   {
     name: "Rice",
     description: "Basmati Rice - 5kg",
