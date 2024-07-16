@@ -65,4 +65,16 @@ export const ProductInsertSchema = createInsertSchema(products, {
   totalGst: z.coerce.number().nonnegative(),
   amount: z.coerce.number().nonnegative(),
 });
-export const ProductSelectSchema = createSelectSchema(products);
+export const ProductSelectSchema = createSelectSchema(products, {
+  rate: z.coerce
+    .number({ required_error: "Rate is required" })
+    .min(1, "At least rate should be ₹1")
+    .nonnegative(),
+  taxableAmount: z.coerce.number().nonnegative(),
+  gst: z.coerce.number({ required_error: "GST is required" }),
+  cGst: z.coerce.number().nonnegative(),
+  sGst: z.coerce.number().nonnegative(),
+  iGst: z.coerce.number({ required_error: "IGST is required" }),
+  totalGst: z.coerce.number().nonnegative(),
+  amount: z.coerce.number().nonnegative(),
+});
