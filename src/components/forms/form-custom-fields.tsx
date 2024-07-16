@@ -13,10 +13,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/utils";
 
 export enum FormFieldType {
   INPUT = "input",
+  NUMERIC_INPUT = "numericInput",
+  DECIMAL_INPUT = "decimalInput",
   TEXTAREA = "textarea",
   CHECKBOX = "checkbox",
   DATE_PICKER = "datePicker",
@@ -28,6 +31,7 @@ interface CustomProps {
   control: Control<any>;
   id?: string;
   type?: string;
+  inputMode?: string;
   name: string;
   label?: string;
   placeholder?: string;
@@ -48,6 +52,31 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
             id={props.id}
             type={props.type ?? "text"}
             placeholder={props.placeholder}
+            disabled={props.disabled ?? false}
+            {...field}
+          />
+        </FormControl>
+      );
+    case FormFieldType.NUMERIC_INPUT:
+      return (
+        <Input
+          id={props.id}
+          type="number"
+          placeholder={props.placeholder}
+          inputMode="numeric"
+          disabled={props.disabled ?? false}
+          {...field}
+        />
+      );
+    case FormFieldType.DECIMAL_INPUT:
+      return (
+        <FormControl>
+          <Input
+            id={props.id}
+            type="number"
+            inputMode="decimal"
+            placeholder={props.placeholder}
+            disabled={props.disabled ?? false}
             {...field}
           />
         </FormControl>
@@ -58,12 +87,23 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
           <Select
             onValueChange={field.onChange}
             defaultValue={field.value}
+            disabled={props.disabled ?? false}
           >
             <SelectTrigger id={props.id}>
               <SelectValue placeholder={props.placeholder} />
             </SelectTrigger>
             <SelectContent>{props.children}</SelectContent>
           </Select>
+        </FormControl>
+      );
+    case FormFieldType.TEXTAREA:
+      return (
+        <FormControl>
+          <Textarea
+            id={props.id}
+            placeholder={props.placeholder}
+            {...field}
+          />
         </FormControl>
       );
     default:
